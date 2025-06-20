@@ -28,7 +28,7 @@ class Menu(discord.ui.Select):
             view = discord.ui.View().add_item(menu)
             await interaction.response.edit_message(view=view)
         if command.startswith("ADDROLE"):
-            interaction.us
+            interaction.user
 
     def open_menu(self,menu_id):
         return Menu(self.last_interaction,custom_id=menu_id)
