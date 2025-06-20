@@ -1,0 +1,26 @@
+{
+
+    "configuration":{
+        "placeholder": "Choisissez votre option",
+        "options":[
+            {
+                "label":"Modération",
+                "description":"Une catégorie",
+                "emoji":"🛠️", 
+                "value":"OPENMENU_moderation"
+            }
+        ]
+    },
+
+    "moderation":{
+        "placeholder": "Choisissez votre option",
+        "options":[
+            {
+                "label":"Test",
+                "description":"Test",
+                "emoji":"🛠️",
+                "value":"OPENMENU_configuration"
+            }
+        ]
+    }
+}

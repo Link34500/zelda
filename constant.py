@@ -1,1 +1,2 @@
-BOT = ""
+BOT = None
+DATAS = None
