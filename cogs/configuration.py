@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 from discord import app_commands
+import utils.files
 import logging
 import json
 # Les différentes options du menu de configuration ⚙️
@@ -46,10 +47,19 @@ class Configuration(commands.Cog):
     @app_commands.checks.has_permissions(administrator=True)
     async def config(self,interaction:discord.Interaction,categorie:str):
         # Crée le menu déroulant avec les options modération🚨...
+        index = json.loads(await utils.files.load_serverfile(interaction.guild_id,'messages.json')) # Charge en dictionnaire
+        index = {
+            "hello":"world"
+        }
+        await utils.files.write_serverfile(interaction.guild_id,'messages.json',json.dumps(index,indent=4).encode()) # Dump le dictionnaire envoie des bytes
         menu = Menu(interaction,"configuration")
         view = discord.ui.View().add_item(menu)
         await interaction.response.send_message(view=view)
-        
+
+    @app_commands.command(name="purge")
+    async def purge(self,interaction:discord.Interaction):
+        for thread in interaction.channel.threads:
+            await thread.delete()
 
 async def setup(bot:commands.Bot):
     await bot.add_cog(Configuration(bot))
