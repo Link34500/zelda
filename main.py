@@ -12,7 +12,7 @@ bot = commands.Bot(intents=intents,command_prefix="!")
 
 @bot.event
 async def on_ready():
-    with open("index.json",'r',enconding="utf-8"):
+    with open("index.json",'r',enconding="utf-8") as f:
         index = json.load(f)
     logging.info("Link... Link... Link... Wake Up !")
     constant.BOT = bot
