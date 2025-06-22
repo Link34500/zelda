@@ -8,6 +8,7 @@ import json
 with open('menu.json','r',encoding='utf-8') as file:
     menus = json.load(file)
 
+
 class Menu(discord.ui.Select):
     def __init__(self,last_interaction:discord.Interaction,custom_id:str,author:bool=False,permissions:list=[]): 
         if menus.get(custom_id) is None:
@@ -47,11 +48,6 @@ class Configuration(commands.Cog):
     @app_commands.checks.has_permissions(administrator=True)
     async def config(self,interaction:discord.Interaction,categorie:str):
         # Crée le menu déroulant avec les options modération🚨...
-        index = json.loads(await utils.files.load_serverfile(interaction.guild_id,'messages.json')) # Charge en dictionnaire
-        index = {
-            "hello":"world"
-        }
-        await utils.files.write_serverfile(interaction.guild_id,'messages.json',json.dumps(index,indent=4).encode()) # Dump le dictionnaire envoie des bytes
         menu = Menu(interaction,"configuration")
         view = discord.ui.View().add_item(menu)
         await interaction.response.send_message(view=view)

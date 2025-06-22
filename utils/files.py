@@ -8,6 +8,7 @@ import constant
 
 
 async def append_guild(guild:discord.Guild):
+    
     """Crée un espace de données pour le serveur indiqué si il n'existe pas
 
     Args:
@@ -25,12 +26,13 @@ async def append_guild(guild:discord.Guild):
             message = await data_thread.send(file=discord.File(pathlib.Path(filename),filename=filename.name))
             files[filename.name] = [message.id]
             logging.info(f"Le fichier {filename.name} à été chargée avec succès pour le serveur avec ID {guild.id}")
-        index['guilds'].append({'name':guild.name,'id':guild.id,"data_id":data_thread.id,"files":files})
+        index['guilds'].append({'name':guild.name,'id':guild.id,"data_id":data_thread.id,"premium":False,"files":files})
         with open("index.json",'w',encoding="utf-8") as f:
             json.dump(index,f,indent=4,ensure_ascii=True)
 
 
 async def write_serverfile(guild_id:int,file_name,bytes):
+
     bot:commands.Bot = constant.BOT
     datas = utils.functions.get_channeldata()
     # 8Mo en octets
@@ -41,19 +43,29 @@ async def write_serverfile(guild_id:int,file_name,bytes):
         # Le mets dans une liste
         data.append(bytes[i:i+part_size])
     guild = get_data_guild(guild_id)
-    guild["files"][file_name] = []
+
+    
     print(datas.threads)
     for thread_for in datas.threads:
-        if thread.id == guild_data['data_id']:
+        if thread_for.id == guild['data_id']:
             thread:discord.Thread = thread_for
-    for part in data:
-        message_part = await thread.send(file_name=file_name,file=discord.File(part))
-        guild["files"][file_name].append(message_part.id)
+            # Supprime les anciens fichiers
+            for files_for in guild["files"][file_name]:
+                message = await thread.fetch_message(files_for)
+                await message.delete()
+                guild["files"][file_name].remove(files_for)
+            for i,part in enumerate(data):
+                import io
+                
+                message_part = await thread.send(file=discord.File(io.BytesIO(part),filename=f"{file_name}.part{i}"))
+                guild["files"][file_name].append(message_part.id)
+                logging.debug("Syncrohnisation local effecuter")
+    logging.info("Envoie des données au serveur avec succès")
     with open("index.json",'r',encoding="utf-8") as f:
         index = json.load(f)
-    for guild_data in index['guilds']:
-        if guild_data['id'] == guild_id:
-            index['guilds'].remove(guild_data)
+    for guild_for in index['guilds']:
+        if guild_for['id'] == guild_id:
+            index['guilds'].remove(get_data_guild(guild_id))
             index['guilds'].append(guild)
     with open("index.json",'w',encoding="utf-8") as f:
         json.dump(index,f,ensure_ascii=True,indent=4)
@@ -93,7 +105,7 @@ async def load_serverfile(guild_id:int,file_name:str):
 def get_files_id(guild_data,file_name):
     if guild_data['files'].get(file_name) is None:
         logging.error(f"Le fichier de donnée nommé {file_name} n'as pas été trouvé")
-    logging.debug(f"Les ID des fichiers de donnée du serveur {guild_data['id']} sont les suivants : {guild_data['files'].get(file_name)}")
+    logging.debug(f"Les ID's du fichier {file_name} de donnée du serveur {guild_data['id']} sont les suivants : {guild_data['files'].get(file_name)}")
     # Retourne la liste d'id des message qui contienne le fichier de donnée
     return guild_data['files'].get(file_name)
 
