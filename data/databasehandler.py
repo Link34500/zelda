@@ -1,7 +1,7 @@
 import sqlite3
 import io
 
-
-conn = sqlite3.connect(bytes(database))
-
-conn.close()
+def connect(database:bytes):
+    conn = sqlite3.connect(database)
+    
+    conn.close()

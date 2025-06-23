@@ -54,6 +54,9 @@ class Configuration(commands.Cog):
 
     @app_commands.command(name="purge")
     async def purge(self,interaction:discord.Interaction):
+        with open("index.json",'w') as f:
+            json.dump({},f)
+
         for thread in interaction.channel.threads:
             await thread.delete()
 
