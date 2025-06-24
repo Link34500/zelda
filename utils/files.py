@@ -32,8 +32,7 @@ async def append_guild(guild:discord.Guild):
 
 
 async def write_serverfile(guild_id:int,file_name,bytes):
-
-    bot:commands.Bot = constant.BOT
+    
     datas = utils.functions.get_channeldata()
     # 8Mo en octets
     part_size = 8 * 1024 * 1024
@@ -99,6 +98,10 @@ async def load_serverfile(guild_id:int,file_name:str):
         message = await thread.fetch_message(link)
         message:discord.Message = await message.fetch()
         data += await message.attachments[0].read()
+
+    if file_name.endswith(".json"):
+        return json.loads(bytes(data).decode('utf-8'))
+    
     
     return bytes(data)
 

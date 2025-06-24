@@ -1,4 +1,18 @@
 {
     "guilds": [
+        {
+            "name": "DATA BOT",
+            "id": 1352303484183249061,
+            "data_id": 1387007386329284660,
+            "premium": false,
+            "files": {
+                "messages.json": [
+                    1387007389240135801
+                ],
+                "options.json": [
+                    1387007391886741625
+                ]
+            }
+        }
     ]
 }

@@ -1,18 +1,19 @@
 {
     "categories":{
+        "configuration":"Configuration - Serveur",
         "automod":"🛡️Auto-Modération",
         "moderation":"🛠️Modération",
         "community":"🌐Communautaire"
     },
-    
-    "NOT_PERMITTED":{
-        "messages":["Vous n'êtes pas permis de faire cela"],
-        "embeds":[
-            {
 
+    "NOT_PERMITTED":{
+        "messages": "Vous n'êtes pas permis de faire cela",
+        "embed": true,
+        "embeds": [
+            {
                 "title":"",
-                "description":"Vous n'êtes pas authorisée à faire ça",
                 "color":"#348443",
+                "time":false,
                 "thumbnail":"",
                 "image":"",   
                 "author":{
