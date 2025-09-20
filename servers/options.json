@@ -1,10 +1,6 @@
 {
-
-    "community":{
-        "welcome_message":true,
-        "left_message":true
-    }
-
-    
-
+  "community": {
+    "welcome_message": true,
+    "left_message": true
+  }
 }
