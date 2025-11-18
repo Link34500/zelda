@@ -23,3 +23,7 @@ export async function registerCommandsDir(
   }
   return commands;
 }
+
+export function get(obj: any, path: string) {
+  return path.split(".").reduce((o, k) => (o ? o[k] : undefined), obj);
+}

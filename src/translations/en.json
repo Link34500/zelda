@@ -1,0 +1,9 @@
+{
+  "commands": {
+    "ping": {
+      "embed": {
+        "description": "You have {ping}ms !"
+      }
+    }
+  }
+}

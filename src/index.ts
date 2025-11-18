@@ -41,29 +41,20 @@ export const client = new Client({
     new Collection()
   );
   console.log("Les commandes ont été chargées");
-
   client.on("interactionCreate", async (interaction) => {
-    if (!interaction.isChatInputCommand()) return;
-    const command = interaction.client.commands.get(interaction.commandName);
+    if (interaction.isChatInputCommand()) {
+      const command = interaction.client.commands.get(interaction.commandName);
 
-    if (!command) {
-      console.error(`No command Matching ${interaction.commandName}`);
-      return;
-    }
-    try {
-      await command.execute(interaction);
-    } catch (error) {
-      console.error(error);
-      if (interaction.replied || interaction.deferred) {
-        interaction.followUp({
-          content: "Une erreur s'est produite",
-          flags: MessageFlags.Ephemeral,
-        });
-      } else {
-        interaction.reply({
-          content: "Une erreur s'est produite",
-          flags: MessageFlags.Ephemeral,
-        });
+      if (!command) {
+        let response = console.error(
+          `No command Matching ${interaction.commandName}`
+        );
+        return;
+      }
+      try {
+        await command.execute(interaction);
+      } catch (error) {
+        console.error(error);
       }
     }
   });

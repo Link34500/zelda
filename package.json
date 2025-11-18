@@ -7,7 +7,7 @@
     "test": "vitest",
     "testui": "vitest --ui",
     "dev": "ts-node -r tsconfig-paths/register src/index.ts",
-    "deploy": "ts-node src/deploy-commands.ts"
+    "deploy": "ts-node -r tsconfig-paths/register src/deploy-commands.ts"
   },
   "keywords": [],
   "author": "Link",
