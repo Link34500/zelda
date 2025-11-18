@@ -1,6 +1,6 @@
 # Fonctionnalités du Bot – Plan de Développement
 
-Tâches : 
+Tâches :
 
 Terminée : ✅
 En cours : 🟠
@@ -9,20 +9,20 @@ Non commencée : ❌
 
 ## Sauvegarde & Configuration
 
-- Système de sauvegarde des données par serveur ⚙️ 
+- Système de sauvegarde des données par serveur ⚙️
 
 ## Fonctions Communautaires
 
 - Message de bienvenue avec image personnalisée
 - AutoRole (rôle automatique à l’arrivée)
-- Réaction Role 
+- Réaction Role
 - Auto Réaction message
 - Sondages
 - Compteur
-- Giveaways 
+- Giveaways
 - Messages récurrents personnalisables
 - Annonces Système Rank/Derank
-- Tickets : 
+- Tickets :
   - Définir un salon spécifique
   - Créer plusieurs raisons
   - Personnalisation complète des messages et formulaires
@@ -33,13 +33,13 @@ Non commencée : ❌
 - Twitch (lives)
 - TikTok (nouvelles vidéos)
 - Statistiques pour chaque plateforme (abonnés, vues, etc.)
- - Tenter de crée une DashBoard pour youtubeurs sur discord
+- Tenter de crée une DashBoard pour youtubeurs sur discord
 
 ## Modération ❌
 
 - Commandes : `/ban`, `/mute`, `kick`, `temp-ban`, `deban`, `demute`
 - AutoMod : détection de spam, insultes, etc.
- - Scan de liens / détecteur de scam
+- Scan de liens / détecteur de scam
 - Système de report par message ou réaction
 
 ## Économie et Boutique ❌
@@ -53,13 +53,14 @@ Non commencée : ❌
 ## Statistiques ❌
 
 - Compteur d'invitation par membre
-- Comptage de messages, entrées et sorties : 
-  - Graphiques Excel des messages (jour/semaine/mois) 
+- Comptage de messages, entrées et sorties :
+  - Graphiques Excel des messages (jour/semaine/mois)
   - Nouveaux membres (sans doublons)
   - Départs (hors retours)
 - Possibilité de configurer le style des graphiques Excel
 
 ## Utilitaires
+
 - Création d'embed personnalisée
 - Crée ses propres menus sélecteur
 - WebHook
@@ -84,9 +85,10 @@ Non commencée : ❌
 
 - Commande `/play`
 - Radio vocale : lire une playlist YouTube ou Spotify dans un salon vocal
- - Pouvoir personnalisée la playlist
+- Pouvoir personnalisée la playlist
 
 ## Personnalisation
+
 - Messages du bot entièremment personnalisée
 - Embed personnalisée couleurs...
 - Possibilitée de placer tout les placeholders possibles avec le contexte/interaction
